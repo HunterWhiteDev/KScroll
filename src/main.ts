@@ -56,6 +56,7 @@ function handleMinimizedChange(window: KWin.AbstractClient) {
 }
 
 const addWindow = (newWindow: KWin.AbstractClient) => {
+  if (!newWindow) return;
   if (
     exlcludeList.includes(newWindow.resourceName) ||
     exlcludeList.includes(newWindow.resourceClass)
