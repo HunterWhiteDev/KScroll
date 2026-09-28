@@ -4,6 +4,7 @@ import { maxSpace } from "./maxSpace";
 import { moveToLeftColumn, moveToRightColumn } from "./moveToColumn";
 import { increaseWidth, decreaseWidth } from "./changeWidth";
 import { swapLeft, swapRight } from "./swapColumn";
+import { floatWindow } from "./floatWindow";
 
 export const initShortcuts = () => {
   registerShortcut(
@@ -68,5 +69,11 @@ export const initShortcuts = () => {
     "Scrolls the view port by the width of the column to the right without focusing the column",
     "Meta+Shift+D",
     shiftViewRight,
+  );
+  registerShortcut(
+    "Toggle Floating",
+    "Toggles Floating a window",
+    "Meta+X",
+    floatWindow,
   );
 };

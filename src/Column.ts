@@ -1,3 +1,4 @@
+import getColumnWithWindw from "./utils/getColumnWithWindow";
 import maxArea from "./utils/maxArea";
 import updatePager from "./utils/updatePager";
 
@@ -34,8 +35,6 @@ export default class Column {
       this.windows.push(window);
     }
 
-    print(this.windows.length);
-
     const leastAreaGeometry = maxArea();
 
     const windowHeight = Math.floor(
@@ -57,11 +56,12 @@ export default class Column {
     }
 
     window.interactiveMoveResizeStepped.connect(() => {
-      window.frameGeometry = window.frameGeometry;
+      //Prevents floating windows from canceling resize
+      if (!window.floating) window.frameGeometry = window.frameGeometry;
     });
 
     window.frameGeometryChanged.connect((oldGeometry) => {
-      if (window.move) window.frameGeometry = oldGeometry;
+      if (!window.floating && window.move) window.frameGeometry = oldGeometry;
     });
 
     updatePager();
