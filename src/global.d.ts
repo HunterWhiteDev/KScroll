@@ -15,6 +15,7 @@ export declare global {
         removeColumnAtIndex(index: number);
         grid: Grid;
         padding: number;
+        floatingIds: Set<QUuid>;
       };
       stackingOrder: KWin.AbstractClient[];
       activeScreen: Output;
@@ -33,6 +34,7 @@ export declare global {
       interactiveMoveResizeStarted: Signal<() => void>;
       interactiveMoveResizeStepped: Signal<() => void>;
       interactiveMoveResizeFinished: Signal<() => void>;
+      floating: boolean;
     }
 
     interface Output {
@@ -46,4 +48,4 @@ export declare global {
   }
 }
 
-export { };
+export {};
