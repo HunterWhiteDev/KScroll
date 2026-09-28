@@ -39,8 +39,14 @@ export default function addWindow(newWindow: KWin.AbstractClient) {
 
   //Premptive check to make sure somehow addWindow() is not called on a window already in the grid
 
-  print("Called");
   const columns = workspace.__globals.getColumnsSortedByXPos();
+
+  //Sometimes, kwin likes to call the windowAdded() signal twice for the same window, especially when opening a minimized window from krunner. This nested loop ensures that we only ever add a window once to the grid.
+  for (const col of columns) {
+    for (const win of col.windows) {
+      if (win.internalId === newWindow.internalId) return;
+    }
+  }
 
   let newWindowXPos;
   if (!columns.length) {
