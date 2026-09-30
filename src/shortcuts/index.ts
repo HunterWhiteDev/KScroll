@@ -5,6 +5,7 @@ import { moveToLeftColumn, moveToRightColumn } from "./moveToColumn";
 import { increaseWidth, decreaseWidth } from "./changeWidth";
 import { swapLeft, swapRight } from "./swapColumn";
 import { floatWindow } from "./floatWindow";
+import updatePager from "../utils/updatePager";
 
 export const initShortcuts = () => {
   registerShortcut(
@@ -76,4 +77,6 @@ export const initShortcuts = () => {
     "Meta+X",
     floatWindow,
   );
+
+  registerShortcut("Debug", "", "Meta+M", updatePager);
 };

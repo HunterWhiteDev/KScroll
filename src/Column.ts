@@ -7,6 +7,7 @@ export default class Column {
   xPosStart: number;
   windows: KWin.AbstractClient[] = [];
   padding: number;
+  id: any;
 
   //Refer to docs/model.md
   //A Column's initial geometry is set by its initialWindow.
@@ -17,6 +18,7 @@ export default class Column {
     padding: number,
     xPosStart: number,
   ) {
+    this.id = Math.floor(Math.random() * 10000000000000);
     const leastAreaGeometry = maxArea();
 
     this.width = leastAreaGeometry.width;

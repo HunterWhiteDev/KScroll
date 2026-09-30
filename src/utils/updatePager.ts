@@ -4,6 +4,7 @@ export default function updatePager() {
   let data = [];
   for (const column of columns) {
     data.push({
+      colId: column.id,
       xPosStart: column.xPosStart,
       windows: column.windows.map((window: KWin.AbstractClient) => {
         return {
