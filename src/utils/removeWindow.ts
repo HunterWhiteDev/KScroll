@@ -5,10 +5,16 @@ export default function removeWindow(
   removedWindow: KWin.AbstractClient,
   focusNextWindow = true,
 ) {
+  const columns = workspace.__globals.getColumnsSortedByXPos();
+
   const columnWithWindow =
     workspace.__globals.getColumnWithWindow(removedWindow);
+
   if (!columnWithWindow) return;
-  const columns = workspace.__globals.getColumnsSortedByXPos();
+
+  //For some reason when this condition is true it doesn't filter out the last column. It will create an empty one with new windows, messing up the grid. This is the easiest fix for now
+  if (columnWithWindow.windows.length === 1 && columns.length === 1)
+    return (workspace.__globals.grid.columns = []);
 
   let removedColumnIdx = 0;
   let found = false;
@@ -30,7 +36,7 @@ export default function removeWindow(
         }
       }
 
-      return;
+      return false;
     }
 
     //Found needs to be true, because if we only check if idx > removedColumnIdx, this will be true before we actually find the column we need

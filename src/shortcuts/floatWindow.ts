@@ -5,7 +5,6 @@ import removeWindow from "../utils/removeWindow";
 export const floatWindow = () => {
   //If no activeWindow, immedietely return
   if (!workspace.activeWindow) return;
-  print("did not return");
 
   //Get the column with the active window
   const columnResponse = workspace.__globals.getColumnWithActiveWindow();
